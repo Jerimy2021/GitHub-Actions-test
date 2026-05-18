@@ -90,3 +90,19 @@ jobs:
           echo "Repo: $GITHUB_REPOSITORY"
           echo "Evento: $GITHUB_EVENT_NAME"
           echo "Runner: $RUNNER_OS"
+
+  deploy:
+    needs: [package, docs] # Dependencia: espera a que empaquetado y docs terminen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el paquete
+        uses: actions/download-artifact@v4
+        with:
+          name: app-zip
+
+      - name: Despliegue simulado
+        run: |
+          echo "Iniciando despliegue en el servidor de producción de jerimy ..."
+          echo "Archivo listo para desplegar:"
+          ls -la
+          echo "¡Despliegue exitoso!"
