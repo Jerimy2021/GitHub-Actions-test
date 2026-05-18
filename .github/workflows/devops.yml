@@ -38,7 +38,7 @@ jobs:
       - name: Run tests
         run: |
           export PYTHONPATH="${PYTHONPATH}:$(pwd)"
-          pytest -q
+          python -m pytest -q
 
       - name: Compute build tag
         id: meta
